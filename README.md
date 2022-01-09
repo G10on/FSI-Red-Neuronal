@@ -12,9 +12,6 @@ Para crear el modelo, inicializamos un objeto de la clase Sequential (pues las c
 
 Finalmente, entrenamos el modelo con el método fit, al que le pasamos los objetos con el dataset de entrenamiento y de validación, y le indicamos el número de épocas que iterará y las condiciones de parada. El resultado que devolverá este método lo podemos guardar para posteriormente visualizar la evolución del entrenamiento, así como los resultados de los tests de validación.
 
-En las primeras configuraciones de hiperparámetros, podemos notar que la precisión (accuracy) mejora con incrementos relativamente pequeños en cada época. Aumentando el learning rate del optimizador Adadelta, logramos que en las siguientes épocas la precisión mejore con cambios más notorios. Por otra parte, incrementamos el números de convoluciones y reducimos el número de neuronas en la capa densa para equilibrar los cálculos y aumentar la velocidad de entrenamiento.
-
-![image](https://user-images.githubusercontent.com/91230270/148660955-9ab2b5d7-60da-4467-a8d9-c93a04bbec5b.png)
 
 ## Categorical Crossentropy:
 
