@@ -2,27 +2,15 @@
 
 El dataset sobre el que se ha trabajado en este proyecto tiene como tópico principal las zonas geográficas habitadas. Está constituido por imágenes obtenidas por satélites, y que se pueden clasificar en 10 categorías diferentes: AnnualCrop, Forest, HerbaceousVegetation, Highway, Industrial, Pasture, PermanentCrop, Residential, River y SeaLake. Esta clasificación puede ser empleada en la exploración geográfica para determinar características importantes de ciertas zonas (ya sean pobladas o no), así como realizar seguimientos de su evolución a través de imágenes satelitales.
 
- 
+En primer lugar, importamos las utilidades de Keras del framework de TensorFlow, que nos permitirán preparar los datos y entrenar el modelo. Establecemos también la ruta al dataset, así como fijar el tamaño del batch y establecer el tamaño de la imagen.
 
-En primer lugar, importamos las utilidades de Keras del framework de TensorFlow, que nos permitirán preparar los datos y entrenar el modelo. Establecemos también las rutas al dataset de entrenamiento y validación, así como fijar el tamaño del batch.
+Seguidamente, aplicamos la técnica de Data Augmentation sobre la parte del dataset de entrenamiento. Para ello, especificamos en los objetos de ImageDataGenerator que el conjunto de validación sea de un 20% del dataset (el otro 80% para el entrenamiento), que las imágenes se roten ciertos grados y que se reescalen, de forma que se encuentren entre 0 y 1 para facilitar el entrenamiento.
 
-  
+Tras realizar el aumento de nuestra parte del dataset de entrenamiento, cargamos la parte del dataset de validación con la clase ImageDataGenerator y reescalamos los valores de los píxeles de la imagen de forma que se encuentren entre 0 y 1.
 
-Seguidamente, aplicamos la técnica de Data Augmentation sobre el dataset de entrenamiento. Para ello, especificamos en los objetos de ImageDataGenerator que las imágenes se roten ciertos grados y que se aplique un giro vertical a la misma.
+Para crear el modelo, inicializamos un objeto de la clase Sequential (pues las capas se añadirán y conectarán una tras otra) y añadimos las capas ocultas. Compilamos el modelo especificando que use la función de pérdida de Categorical Cross Entropy y que el optimizador a usar sea el Adadelta, así como indicarle que se muestren las métricas de accuracy. 
 
-  
-
-Tras realizar el aumento de nuestro dataset de entrenamiento, cargamos el dataset de validación completo con la clase ImageDataGenerator y reescalamos los valores de los píxeles de la imagen de forma que se encuentren entre 0 y 1 para facilitar el entrenamiento.
-
-  
-
-Para crear el modelo, inicializamos un objeto de la clase Sequential (pues las capas se añadirán y conectarán una tras otra) y añadimos las capas ocultas. Compilamos el modelo especificando que use la función de pérdida de Categorical Cross Entropy y que el optimizador a usar sea el Adadelta, así como indicarle que se muestren las métricas de accuracy.
-
-  
-
-Finalmente, entrenamos el modelo con el método fit_generator, al que le pasamos los objetos con el dataset de entrenamiento y de validación, y le indicamos el número de épocas que iterará y las condiciones de parada. El resultado que devolverá este método lo podemos guardar para posteriormente visualizar la evolución del entrenamiento, así como los resultados de los tests de validación.
-
-  
+Finalmente, entrenamos el modelo con el método fit, al que le pasamos los objetos con el dataset de entrenamiento y de validación, y le indicamos el número de épocas que iterará y las condiciones de parada. El resultado que devolverá este método lo podemos guardar para posteriormente visualizar la evolución del entrenamiento, así como los resultados de los tests de validación.
 
 En las primeras configuraciones de hiperparámetros, podemos notar que la precisión (accuracy) mejora con incrementos relativamente pequeños en cada época. Aumentando el learning rate del optimizador Adadelta, logramos que en las siguientes épocas la precisión mejore con cambios más notorios. Por otra parte, incrementamos el números de convoluciones y reducimos el número de neuronas en la capa densa para equilibrar los cálculos y aumentar la velocidad de entrenamiento.
 
