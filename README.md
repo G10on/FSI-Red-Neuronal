@@ -22,4 +22,7 @@ Además, para aislar y quedarse solo con el error en la categoría esperada, se 
 
 ## Configuraciones de Hiperparámetros
 
-Los commits del código son algunas de las configuraciones de hiperparámetros que probamos para el modelo de la red neuronal. La más reciente ("epoch24_92") es la que mejor precisión ha desarrollado.
+Los commits del código son algunas de las configuraciones de hiperparámetros que probamos para el modelo de la red neuronal. La más reciente ("epoch24_92") es la que mejor precisión ha desarrollado. A continuación una tabla comparativa que muestra algunas configuraciones de hiperparámetros que hemos utilizado (la que está en rojo es la que mejor resultado ha proporcionado).
+
+![TABLA](https://user-images.githubusercontent.com/90768791/148784907-8fc71320-7859-4955-a182-fca382ac65b5.png)
+
