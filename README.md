@@ -18,3 +18,8 @@ Finalmente, entrenamos el modelo con el método fit, al que le pasamos los objet
 La función de pérdida Categorical Cross Entropy nos permite calcular el error de una predicción focalizándose siempre en la categoría que debe salir como resultado. Lo hace de tal forma que nos indica un valor elevado únicamente cuando el error es grande en la predicción de la categoría correspondiente a la salida, independientemente del error en el resto de predicciones. Para ello, hace uso de la función Softmax, donde la salida es un vector del tamaño del número de categorías, en el que cada posición representa una probabilidad para cada categoría. Esto lo hace mediante el logaritmo neperiano de la probabilidad predicha, de tal forma que devolverá un número cercano a 0 si la predicción coincide con la categoría esperada, y tiende a menos infinito si la probabilidad predicha es baja (por eso se le cambia el signo al final).
 
 Además, para aislar y quedarse solo con el error en la categoría esperada, se multiplica este vector elemento a elemento con la codificación One-Hot. Este es un vector de ceros del tamaño del número de categorías, pero con un 1 en la posición que represente la categoría esperada. De esta forma, el sumatorio de la multiplicación elemento a elemento nos dará un error que estará centrado únicamente en la predicción de la categoría esperada.
+
+
+## Configuraciones de Hiperparámetros
+
+Los commits del código son algunas de las configuraciones de hiperparámetros que probamos para el modelo de la red neuronal. La más reciente ("epoch24_92") es la que mejor precisión ha desarrollado.
