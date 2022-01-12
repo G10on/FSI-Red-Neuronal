@@ -26,3 +26,22 @@ Los commits del código son algunas de las configuraciones de hiperparámetros q
 
 ![TABLA](https://user-images.githubusercontent.com/90768791/148784907-8fc71320-7859-4955-a182-fca382ac65b5.png)
 
+
+## Comparaciones y análisis
+
+Observando la gráfica del modelo que mejores resultados ha proporcionado, nos podemos fijar en que la métrica del loss y el accuracy, así como las de validación, evolucionan rápidamente en las primeras epochs. Esto es, que las predicciones son cada vez más certeras, y el error que se calcula en la función de coste decrece. Además, en una primera vista notamos que las formas de las evoluciones entre las métricas de accuracy y loss aparentan seguir trayectorias a lo largo de cada epoch, como era de esperar. 
+
+
+A partir de la 4º epoch, podemos apreciar cómo los cambios en los pesos de la red neuronal generan cada vez mejoras más pequeñas. Se podría pensar que, tras alcanzar el 70% en accuracy (o 0.5 de loss) los pesos de nuestro modelo empiezan a encontrarse cerca de un mínimo en la función de pérdida, y por tanto, los cambios deben ser cada vez más pequeños (evolución más lenta) para alcanzarlo.
+
+
+Cuando nos fijamos en las métricas entre el entrenamiento y la validación, podíamos afirmar que en nuestro modelo no se había producido overfitting. Es decir, el modelo no ha memorizado el dataset para devolver predicciones correctas, sino que ha sido capaz de generalizar. Este sobreajuste se hubiese apreciado si los resultados del entrenamiento (en nuestro caso, con accuracy y loss) hubiesen presentado mejores rendimientos que en los resultados de validación. Como vemos, no ha sido el caso.
+
+
+En cuanto a otras configuraciones de hiperparámetros que empleamos, nos hemos percatado de determinados patrones. La primera es que el hiperparámetro de learning rate lo podemos incrementar para que al principio de las epochs se realizen cambios en los pesos de tal forma que se acerque rápidamente al mínimo, y por tanto, requerirá de menos números de epochs. Sin embargo, tras las primeras epochs, cada vez le resulta más difícil realizar mejoras, pues los cambios son muy grandes. Por otro lado, al contrario que en el anterior caso, establecer valores muy bajos para este hiperparámetro sí permitiría acercarse mejor al mínimo. No obstante, provoca una evolución muy lenta durante las epochs, por lo que requerirá de un mayor número de epochs.
+
+
+Otro de los aspectos destacados es la carga computacional. Durante las pruebas de las distintas configuraciones de hiperparámetros, el tiempo de entrenamiento en cada epoch se incrementaba considerablemente cuanto más grande y mayores capas densas poseía el modelo. Este aspecto era especialmente notorio a laentrada de las capas densas. Es decir, en la capa donde se serializan las matrices, flatten Por otro lado, las convoluciones eran más ligeras de llevarse a cabo. Por ello, equilibramos el número de cálculos entre las capas convolucionales y las densas, de tal forma que las convoluciones reducían la complejidad de las imágenes de entrada y extraían las características más relevantes, para que las capas densas detectaran patrones más sencillos.
+
+
+En algunas configuraciones de hiperparámetros se produjeron overfitting en determinados momentos durante el entrenamiento, pues se podía apreciar en las gráficas que la precisión en el entrenamiento era mayor que en la validación (como se mencionó anteriormente). Por ello, añadimos capas de Dropaut y redujimos la cantidad de parámetros para evitar estos sobreajustes que se producían durante el entrenamiento.
